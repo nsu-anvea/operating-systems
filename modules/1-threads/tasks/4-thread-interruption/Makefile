@@ -1,2 +1,5 @@
 a: a-thread-print-in-while.c
 	gcc a-thread-print-in-while.c -o a-tpiw -lpthread
+
+b: b-pthread-testcancel.c
+	gcc b-pthread-testcancel.c -o b-pt -lpthread
