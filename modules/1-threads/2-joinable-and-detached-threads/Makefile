@@ -1,5 +1,7 @@
 SRC = src/
 
+all: abc d e f
+
 abc: $(SRC)abc-joinable-thread-returns-num-and-str.c
 	gcc $(SRC)abc-joinable-thread-returns-num-and-str.c -o abc-jtrnas -lpthread
 
