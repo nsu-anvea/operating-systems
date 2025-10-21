@@ -3,3 +3,6 @@ a: a-thread-print-in-while.c
 
 b: b-pthread-testcancel.c
 	gcc b-pthread-testcancel.c -o b-pt -lpthread
+
+c: c-cleanup-push-pop.c
+	gcc c-cleanup-push-pop.c -o c-cpp -lpthread
