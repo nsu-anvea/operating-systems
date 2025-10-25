@@ -1,11 +1,35 @@
-a: a-thread-print-in-while.c
-	gcc a-thread-print-in-while.c -o a-tpiw -lpthread
+CC = gcc
+LDFLAGS = -lpthread
 
-b: b-pthread-testcancel.c
-	gcc b-pthread-testcancel.c -o b-pt -lpthread
+SRC_DIR = src
+BLD_DIR = build
 
-c: c-cleanup-push-pop.c
-	gcc c-cleanup-push-pop.c -o c-cpp -lpthread
+define compile
+$(CC) $< -o $(BLD_DIR)/$(1) $(LDFLAGS)
+endef
 
-d: d-signal-handler.c
-	gcc d-signal-handler.c -o d-sh -lpthread
+
+all: a b c d
+
+a b c d: | $(BLD_DIR)
+
+a: $(SRC_DIR)/a-thread-print-in-while.c
+	$(call compile,a-tpiw)
+
+b: $(SRC_DIR)/b-pthread-testcancel.c
+	$(call compile,b-pt)
+
+c: $(SRC_DIR)/c-cleanup-push-pop.c
+	$(call compile,c-cpp)
+
+d: $(SRC_DIR)/d-signal-handler.c
+	$(call compile,d-sh)
+
+
+$(BLD_DIR):
+	mkdir -p $@
+
+clean:
+	rm -rf $(BLD_DIR)
+
+.PHONY: all clean
