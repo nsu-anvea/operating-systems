@@ -33,7 +33,18 @@ int main() {
     }
     
     printf("Поток создан с tid: %d\n", tid);
-    waitpid(tid, NULL, 0);
+    fflush(stdout);
+
+    int status;
+    int result = waitpid(tid, &status, 0);
+    
+    if (result == -1) {
+        perror("waitpid failed");
+    }
+    else {
+        printf("waitpid успешен, код выхода: %d\n", WEXITSTATUS(status));
+    }
+
     free(stack);
 
     return 0;
