@@ -22,7 +22,7 @@ int main() {
     int tid = clone(
         thread_function,
         stack_top,
-        CLONE_VM | CLONE_FS | CLONE_FILES | CLONE_SIGHAND | CLONE_THREAD,
+        CLONE_VM | CLONE_FS | CLONE_FILES | CLONE_SIGHAND,
         "test"
     );
 
@@ -33,7 +33,7 @@ int main() {
     }
     
     printf("Поток создан с tid: %d\n", tid);
-    sleep(1);
+    waitpid(tid, NULL, 0);
     free(stack);
 
     return 0;
