@@ -9,7 +9,6 @@
 int thread_function(void *arg) {
 	printf("\t[THREAD]: I've started!\n");
 	printf("\t[THREAD][PRINT]: %s\n", (char *)arg);
-	sleep(1);
 	printf("\t[THREAD]: I've finished!\n");
 	return 0;
 }
